@@ -15,7 +15,7 @@ import OnerilenUrunler from './sayfalar/OnerilenUrunler';
 import KayitliAdres from "./sayfalar/KayitliAdres";
 import Siparislerim from './sayfalar/Siparislerim';
 import Premium from './sayfalar/Premium';
-
+import SellerPage from './sayfalar/SellerPage';
 
 
 function App() {
@@ -37,7 +37,8 @@ function App() {
                 <Route path='/onerilenurunler' element={<OnerilenUrunler/>}/>
                 <Route path="/kayitliAdresler" element={<KayitliAdres/>}/> 
                 <Route path="/siparislerim" element={<Siparislerim/>}/> 
-                <Route path="/premium" element={<Premium/>}/> 
+                <Route path="/premium" element={<Premium/>}/>
+                <Route path='/SellerPage ' element={<SellerPage />} /> 
 
 
             </Routes>    
