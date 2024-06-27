@@ -1,47 +1,97 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import { Navbar } from './components/Navbar';
-import Home from './sayfalar/home';
-import Sepetim from './sayfalar/Sepetim';
-import SifremiUnuttum from './sayfalar/SifremiUnuttum';
-import SignUp from './sayfalar/SignUp';
-import Favoriler from './sayfalar/Favoriler';
-import CPDeck from './sayfalar/CPDeck';
-import UrunDegerlendirme from './sayfalar/UrunDegerlendirme';
-import Degerlendirmelerim from './sayfalar/Degerlendirmelerim';
-import Odeme from './sayfalar/Odeme';
-import TekrarSatinAl from './sayfalar/TekrarSatinAl';
-import OnerilenUrunler from './sayfalar/OnerilenUrunler';
-import KayitliAdres from "./sayfalar/KayitliAdres";
-import Siparislerim from './sayfalar/Siparislerim';
-import Premium from './sayfalar/Premium';
+import React, { useEffect } from "react";
+import "./App.css";
+import Header from "./Header";
+import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Checkout from "./Checkout";
+import Login from "./Login";
+import Register from "./register"; // Register bileşenini içe aktarın
+import Payment from "./Payment";
+
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Onerilen from "./Onerilen";
+import Indirim from "./Indirim";
+import OrdersPage from './OrdersPage';
+import ProductReviewForm from './ProductReviewForm';
 
 
+const promise = loadStripe("pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL");
 
 function App() {
+  const [{}, dispatch] = useStateValue();
+
+  useEffect(() => {
+    // will only run once when the app component loads...
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        // the user just logged in / the user was logged in
+
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // the user is logged out
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+  }, []);
 
   return (
-    <div className='ana_sayfa' >
-      <Navbar/>
-      <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/giris' element={<SignUp />} />
-                <Route path='/sepetim' element={<Sepetim />} />
-                <Route path='/giris/sifremi_unuttum' element={<SifremiUnuttum />} />
-                <Route path='/favoriler' element={<Favoriler/>}/>
-                <Route path='/cpdeck' element={<CPDeck/>}/>
-                <Route path='/urundegerlendirme' element={<UrunDegerlendirme/>}/>
-                <Route path='/degerlendirmelerim' element={<Degerlendirmelerim/>}/>
-                <Route path='/odeme' element={<Odeme/>}/>
-                <Route path='/tekrarsatinal' element={<TekrarSatinAl/>}/>
-                <Route path='/onerilenurunler' element={<OnerilenUrunler/>}/>
-                <Route path="/kayitliAdresler" element={<KayitliAdres/>}/> 
-                <Route path="/siparislerim" element={<Siparislerim/>}/> 
-                <Route path="/premium" element={<Premium/>}/> 
-
-
-            </Routes>    
-            </div>
+    <Router>
+      <div className="app">
+        <Switch>
+        <Route path="/ProductReviewForm">
+            <Header />
+            <ProductReviewForm/>
+          </Route>
+        <Route path="/OrdersPage">
+            <Header />
+            <OrdersPage/>
+          </Route>
+        <Route path="/Indirim">
+            <Header />
+            <Indirim/>
+          </Route>
+        <Route path="/Onerilen">
+            <Header />
+            <Onerilen />
+          </Route>
+          
+          
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register"> {/* Register rotasını ekleyin */}
+            <Register />
+          </Route>
+          <Route path="/checkout">
+            <Header />
+            <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </Route>
+          <Route path="/">
+            <Header />
+            <Home />
+          </Route>
+          
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
