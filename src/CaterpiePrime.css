@@ -1,0 +1,75 @@
+.caterpiePrime {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.caterpiePrime__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.caterpiePrime__content {
+  margin-bottom: 20px;
+}
+
+.caterpiePrime__field {
+  margin-bottom: 15px;
+}
+
+.caterpiePrime__label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.caterpiePrime__input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.caterpiePrime__text {
+  margin-bottom: 5px;
+}
+
+.caterpiePrime__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.caterpiePrime__listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: #fff;
+}
+
+.caterpiePrime__button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.caterpiePrime__button:hover {
+  background-color: #0056b3;
+}
+
+.caterpiePrime__buttons {
+  text-align: center;
+  margin-top: 20px;
+}

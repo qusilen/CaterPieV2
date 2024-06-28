@@ -30,15 +30,6 @@ const ProductReviewForm = () => {
 
   return (
     <div style={{ border: '1px solid #ccc', padding: '20px', borderRadius: '8px' }}>
-      <div style={{ width: '90%', backgroundColor: 'rgb(240, 220, 206)', border: '1px solid #ddd', borderRadius: '4px', padding: '10px', margin: '20px 0', display: 'flex', marginLeft:"78px" }}>
-        <div style={{ flex: '1', marginRight: '10px' }}>
-          <img src="https://ktnimg2.mncdn.com/products/2024/04/04/2559211/3d6c1f29-f4ec-40a6-9e9d-649ae0995893_size870x1142.jpg" alt="Product" style={{ width: '50%', borderRadius: '4px' , marginLeft: '200px'}} />
-        </div>
-        <div style={{ flex: '2', textAlign: 'left', marginTop:"155px" }}>
-          <p style={{ fontWeight: 'bold' }}>Ürün: Koton Paçası Yırtık Straight Fit Kot Pantolon</p>
-          <p style={{ fontWeight: 'bold' }}>Fiyat: 150₺</p>
-        </div>
-      </div>
       {/* Review Form */}
       <form onSubmit={handleSubmit}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
