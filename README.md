@@ -5,7 +5,9 @@ Proje Kategorisi: Caterpie bir ticaret ve alışveriş sitesidir.
 
 Referans Uygulama: https://www.trendyol.com/
 
-Uygulama Adresi: 
+Uygulama Adresi: https://main.d3c25smeh905xz.amplifyapp.com/
+
+Sitemizin Youtube Linki: https://www.youtube.com/watch?v=FbosNQw4PJg
 
 Grup Adı: Pikapika
 
@@ -22,7 +24,3 @@ Proje Ekibi: Erhan Ece, Abdullah Deniz Tonka, Saadet Gökbulut, Dilek Gül, Esra
 9.	Dokümantasyon
 
 
-Sitemizin Linki: https://main.d3c25smeh905xz.amplifyapp.com/
-
-
-Sitemizin Youtube Linki: https://www.youtube.com/watch?v=FbosNQw4PJg
