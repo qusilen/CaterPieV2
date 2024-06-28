@@ -21,4 +21,6 @@ Proje Ekibi: Erhan Ece, Abdullah Deniz Tonka, Saadet Gökbulut, Dilek Gül, Esra
 8.	Test
 9.	Dokümantasyon
 
+
+Sitemizin Linki taslak: https://main.d1lys002nlk3at.amplifyapp.com/ 
 Sitemizin Youtube Linki: https://www.youtube.com/watch?v=FbosNQw4PJg
