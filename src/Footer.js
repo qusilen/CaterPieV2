@@ -1,6 +1,5 @@
 import React from 'react';
 import './Footer.css'; // Footer stil dosyası
-import { Link } from 'react-router-dom'; // React Router'dan Link import edin
 
 const Footer = () => {
   return (
@@ -15,7 +14,7 @@ const Footer = () => {
       </div>
       <div className="footer-section">
         <h3>Yardım</h3>
-        <p>Sıkça Sorulan Sorular ve <Link to="/destek">destek almak için bize ulaşın</Link>.</p>
+        <p>Sıkça Sorulan Sorular ve destek almak için bize ulaşın.</p>
       </div>
     </footer>
   );

@@ -72,6 +72,12 @@ function Header() {
           <span className="header__optionLineTwo">Ürünler</span>
         </div>
         </Link>
+        <Link to='/Favorites'>
+        <div className="header__option">
+          <span className="header__optionLineOne">Favori</span>
+          <span className="header__optionLineTwo">Ürünler</span>
+        </div>
+        </Link>
 
         <Link to="/checkout">
           <div className="header__optionBasket">

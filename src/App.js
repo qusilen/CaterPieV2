@@ -17,7 +17,7 @@ import OrdersPage from './OrdersPage';
 import ProductReviewForm from './ProductReviewForm';
 import CaterpiePrime from './CaterpiePrime'; // CaterpiePrime bileşenini dahil edin
 import Footer from './Footer'; // Footer bileşenini dahil edin
-import SupportPage from './SupportPage'; // Destek sayfasını dahil edin
+import Favorites from "./Favorites";
 
 const promise = loadStripe("pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL");
 
@@ -58,6 +58,9 @@ function App() {
           <Route path="/OrdersPage">
             <OrdersPage />
           </Route>
+          <Route path="/Favorites">
+            <Favorites />
+          </Route>
           <Route path="/Indirim">
             <Indirim />
           </Route>
@@ -81,10 +84,6 @@ function App() {
           {/* Caterpie Prime için Route ekleme */}
           <Route path="/caterpieprime">
             <CaterpiePrime />
-          </Route>
-          {/* Destek sayfası için Route */}
-          <Route path="/destek">
-            <SupportPage />
           </Route>
           <Route path="/">
             <Home />

@@ -19,6 +19,20 @@ function Product({ id, title, image, price, rating, onCompare, isSelected, isBes
     });
   };
 
+  const addToFavorites = () => {
+    // Favorilere ürün eklemek için dispatch kullanılıyor
+    dispatch({
+      type: "ADD_TO_FAVORITES",
+      item: {
+        id: id,
+        title: title,
+        image: image,
+        price: price,
+        rating: rating,
+      },
+    });
+  };
+
   return (
     <div className="product">
       {/* Çok satan ürün işareti */}
@@ -42,9 +56,13 @@ function Product({ id, title, image, price, rating, onCompare, isSelected, isBes
       <img src={image} alt={title} />
 
       <button onClick={addToBasket}>Sepete Ekle</button>
-      <button onClick={() => onCompare(id)}>
-        {isSelected ? "Karşılaştırmadan Çıkar" : "Karşılaştırmaya Ekle"}
-      </button>
+      <button onClick={addToFavorites}>Favorilere Ekle</button>
+
+      {onCompare && (
+        <button onClick={() => onCompare(id)}>
+          {isSelected ? "Karşılaştırmadan Çıkar" : "Karşılaştırmaya Ekle"}
+        </button>
+      )}
     </div>
   );
 }
