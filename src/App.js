@@ -1,47 +1,97 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import { Navbar } from './components/Navbar';
-import Home from './sayfalar/home';
-import Sepetim from './sayfalar/Sepetim';
-import SifremiUnuttum from './sayfalar/SifremiUnuttum';
-import SignUp from './sayfalar/SignUp';
-import Favoriler from './sayfalar/Favoriler';
-import CPDeck from './sayfalar/CPDeck';
-import UrunDegerlendirme from './sayfalar/UrunDegerlendirme';
-import Degerlendirmelerim from './sayfalar/Degerlendirmelerim';
-import Odeme from './sayfalar/Odeme';
-import TekrarSatinAl from './sayfalar/TekrarSatinAl';
-import OnerilenUrunler from './sayfalar/OnerilenUrunler';
-import KayitliAdres from "./sayfalar/KayitliAdres";
-import Siparislerim from './sayfalar/Siparislerim';
-import Premium from './sayfalar/Premium';
+import React, { useEffect } from "react";
+import "./App.css";
+import Header from "./Header";
+import Home from "./Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Checkout from "./Checkout";
+import Login from "./Login";
+import Register from "./Register";
+import Payment from "./Payment";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Onerilen from "./Onerilen";
+import Indirim from "./Indirim";
+import OrdersPage from './OrdersPage';
+import ProductReviewForm from './ProductReviewForm';
+import CaterpiePrime from './CaterpiePrime'; // CaterpiePrime bileşenini dahil edin
+import Footer from './Footer'; // Footer bileşenini dahil edin
+import Favorites from "./Favorites";
 
-
+const promise = loadStripe("pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL");
 
 function App() {
+  const [{}, dispatch] = useStateValue();
+
+  useEffect(() => {
+    // Uygulama bileşeni yüklendiğinde sadece bir kez çalışacak...
+
+    auth.onAuthStateChanged((authUser) => {
+      console.log("THE USER IS >>> ", authUser);
+
+      if (authUser) {
+        // Kullanıcı yeni giriş yaptı / kullanıcı zaten giriş yapılmış
+
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
+      } else {
+        // Kullanıcı çıkış yaptı
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+  }, []);
 
   return (
-    <div className='ana_sayfa' >
-      <Navbar/>
-      <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/giris' element={<SignUp />} />
-                <Route path='/sepetim' element={<Sepetim />} />
-                <Route path='/giris/sifremi_unuttum' element={<SifremiUnuttum />} />
-                <Route path='/favoriler' element={<Favoriler/>}/>
-                <Route path='/cpdeck' element={<CPDeck/>}/>
-                <Route path='/urundegerlendirme' element={<UrunDegerlendirme/>}/>
-                <Route path='/degerlendirmelerim' element={<Degerlendirmelerim/>}/>
-                <Route path='/odeme' element={<Odeme/>}/>
-                <Route path='/tekrarsatinal' element={<TekrarSatinAl/>}/>
-                <Route path='/onerilenurunler' element={<OnerilenUrunler/>}/>
-                <Route path="/kayitliAdresler" element={<KayitliAdres/>}/> 
-                <Route path="/siparislerim" element={<Siparislerim/>}/> 
-                <Route path="/premium" element={<Premium/>}/> 
-
-
-            </Routes>    
-            </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <Switch>
+          <Route path="/ProductReviewForm">
+            <ProductReviewForm />
+          </Route>
+          <Route path="/OrdersPage">
+            <OrdersPage />
+          </Route>
+          <Route path="/Favorites">
+            <Favorites />
+          </Route>
+          <Route path="/Indirim">
+            <Indirim />
+          </Route>
+          <Route path="/Onerilen">
+            <Onerilen />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </Route>
+          {/* Caterpie Prime için Route ekleme */}
+          <Route path="/caterpieprime">
+            <CaterpiePrime />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+        <Footer /> {/* Footer bileşenini buraya ekleyin */}
+      </div>
+    </Router>
   );
 }
 

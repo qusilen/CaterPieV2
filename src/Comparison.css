@@ -1,0 +1,26 @@
+/* Comparison.css */
+.comparison {
+    padding: 20px;
+    background-color: white;
+    margin-top: 20px;
+  }
+  
+  .comparison__table {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .comparison__product {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid lightgray;
+    text-align: center;
+  }
+  
+  .comparison__product img {
+    max-width: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
